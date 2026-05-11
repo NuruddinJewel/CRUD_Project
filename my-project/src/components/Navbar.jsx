@@ -15,7 +15,8 @@ const Navbar = () => {
                 <Image src={'/assets/Wanderlast.png'}
                     height={150}
                     width={150}
-                    alt='logo' />
+                    alt='logo'
+                />
             </div>
 
             <ul className='flex gap-3'>
