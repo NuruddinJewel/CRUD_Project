@@ -69,7 +69,7 @@ const Banner = () => {
     return (
         <div
             style={{
-                backgroundImage: "url('/assets/banner.png')",
+                backgroundImage: "url('/assets/Banner.png')",
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}
