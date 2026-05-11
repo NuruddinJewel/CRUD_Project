@@ -151,7 +151,7 @@ async function run() {
             res.json(result)
         })
 
-        Delete
+        // Delete
         app.delete('/destination/:id', async (req, res) => {
             const { id } = req.params;
             const result = await desCollection.deleteOne({ _id: new ObjectId(id) })
