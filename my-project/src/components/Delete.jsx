@@ -7,10 +7,10 @@ import { TrashBin } from "@gravity-ui/icons";
 
 export function Delete({ id, destinationName }) {
     const router = useRouter();
-
+    // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${id}`
     const handleDelete = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/destination/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${id}`, {
                 method: "DELETE",
             });
 
@@ -24,7 +24,7 @@ export function Delete({ id, destinationName }) {
         } catch (error) {
             console.error("Error deleting:", error);
         }
-        redirect('/destinations')
+        // redirect('/destinations')
     };
 
     return (

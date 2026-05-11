@@ -2,14 +2,14 @@
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Card } from '@heroui/react';
 import { redirect } from 'next/navigation';
 import React from 'react';
-
+import { useRouter } from 'next/navigation'
 const AddDestinationPage = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const destination = Object.fromEntries(formData.entries())
         console.log(destination)
-        const res = await fetch('http://localhost:5000/destination', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -18,7 +18,10 @@ const AddDestinationPage = () => {
         })
         // const data = await res.json()
         // console.log(data)
-        redirect('/destinations')
+        // redirect('/destinations')
+        if (res.ok) {
+            router.push('/destinations')
+        }
     }
     return (
         <div className='p-5 max-w-7xl mx-auto'>

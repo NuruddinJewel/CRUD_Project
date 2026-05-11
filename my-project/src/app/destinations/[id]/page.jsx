@@ -442,7 +442,7 @@ import { FaStar, FaCheck } from "react-icons/fa";
 import { EditModal } from "@/components/EditModal";
 
 const getDestination = async (id) => {
-    const res = await fetch(`http://localhost:5000/destination/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${id}`, {
         cache: "no-store",
     });
 
