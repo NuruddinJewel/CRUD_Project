@@ -6,22 +6,23 @@ const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db('project-wander');
 
 export const auth = betterAuth({
-    database: mongodbAdapter(db, {
-        client
-    }),
-    emailAndPassword: {
-        enabled: true,
+  database: mongodbAdapter(db, {
+    client
+  }),
+  emailAndPassword: {
+    enabled: true,
+  },
+  // trustedOrigins: [
+  //     "http://localhost:3000",
+  //     process.env.FRONTEND_URL,
+  // ].filter(Boolean),
+
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
-    // trustedOrigins: [
-    //     "http://localhost:3000",
-    //     process.env.FRONTEND_URL,
-    // ].filter(Boolean),
-    socialProviders: {
-        google: {
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        },
-    },
+  },
 });
 
 /* 
