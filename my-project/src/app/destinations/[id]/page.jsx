@@ -434,12 +434,13 @@
 
 //4
 
-import { Button, Card, Separator } from "@heroui/react";
+import { Button, Card, DateField, Label, Separator } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { LuMapPin, LuCalendar, LuArrowLeft } from "react-icons/lu";
 import { FaStar, FaCheck } from "react-icons/fa";
 import { EditModal } from "@/components/EditModal";
+import TravelDateField from "@/components/DateField";
 
 const getDestination = async (id) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/destination/${id}`, {
@@ -471,7 +472,7 @@ const DestinationDetailsPage = async ({ params }) => {
     } = destination;
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 justify-between">
             <div className="max-w-4xl mx-auto bg-white shadow-sm">
 
                 {/* Top navigation bar */}
@@ -577,12 +578,17 @@ const DestinationDetailsPage = async ({ params }) => {
                                 </div>
                             )}
 
-                            <Button
+                            {/* DateField */}
+                            <div className="w-full">
+                                <TravelDateField destination={destination} />
+                            </div>
+
+                            {/* <Button 
                                 className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-md"
                                 endContent={<span>→</span>}
                             >
                                 Book Now
-                            </Button>
+                            </Button> */}
 
                             <div className="space-y-1.5 pt-1">
                                 {[
@@ -601,6 +607,10 @@ const DestinationDetailsPage = async ({ params }) => {
                     </div>
                 </div>
             </div>
+            {/* <div>
+                text-muted ->light grey color
+                <BookingCard />
+            </div> */}
         </div>
     );
 };

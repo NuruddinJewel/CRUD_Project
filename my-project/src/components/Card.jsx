@@ -33,7 +33,7 @@
 // };
 
 // export default Card;
-
+'use client'
 import { Button } from '@heroui/react';
 import Image from 'next/image';
 import React from 'react';
@@ -41,6 +41,7 @@ import { LuMapPin } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
 import { RxExternalLink } from "react-icons/rx";
 import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
 // const Card = ({ destination }) => {
 //     const { imageUrl, price, destinationName, duration, country } = destination
 //     return (
@@ -110,8 +111,8 @@ const Card = ({ destination }) => {
                     <span>{duration}</span>
                     <Link href={`/destinations/${_id}`}><Button variant='ghost' className={'mt-1 text-cyan-500'}> <RxExternalLink />Book Now</Button></Link>
                 </div>
-            </div>
 
+            </div>
         </div>
     );
 };

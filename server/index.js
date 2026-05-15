@@ -87,15 +87,15 @@ const app = express()
 // const PORT = process.env.PORT || 5000;
 const PORT = process.env.PORT || 5000;
 
-// app.use(cors())
-app.use(cors({
-    origin: [
-        "http://localhost:3000",
-        process.env.FRONTEND_URL,
-    ].filter(Boolean),
-    credentials: true,
-}));
-app.use(express.json())
+app.use(cors())
+// app.use(cors({
+//     origin: [
+//         "http://localhost:3000",
+//         process.env.FRONTEND_URL,
+//     ].filter(Boolean),
+//     credentials: true,
+// }));
+// app.use(express.json())
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -109,7 +109,8 @@ async function run() {
     try {
         await client.connect();
         const db = client.db("project-wander")
-        const desCollection = db.collection('destinations')
+        const desCollection = db.collection('destinations');
+        const bookingCollection = db.collection('bookings')
 
         // GET all destinations
         app.get('/destination', async (req, res) => {
@@ -165,7 +166,30 @@ async function run() {
             res.json(result)
         })
 
+        //POST
+        // app.post("/booking", async (req, res) => {
+        //     const bookingData = req.body;
+        //     const result = await bookingCollection.insertOne(bookingData)
 
+        //     res.json(result)
+        // })
+        // POST booking 
+        app.post("/booking", async (req, res) => {
+            try {
+                const bookingData = req.body;
+
+
+                if (!bookingData.userId || !bookingData.destinationId) {
+                    return res.status(400).json({ message: "Missing required fields" });
+                }
+
+                const result = await bookingCollection.insertOne(bookingData);
+                res.status(201).json(result);
+            } catch (error) {
+                console.error(error);
+                res.status(500).json({ message: "Internal server error" });
+            }
+        });
 
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
