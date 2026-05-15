@@ -99,21 +99,21 @@ const TravelDateField = ({ destination }) => {
             return;
         }
 
-        // ✅ HeroUI DateField returns a DateValue object
+        // HeroUI DateField returns a DateValue object
         // .toString() gives "YYYY-MM-DD", then convert to JS Date
         const parsedDate = new Date(departureDate.toString());
 
         const bookingData = {
             userId: user?.id,
             userName: user?.name,
-            userEmail: user?.email,       // ✅ extra useful field
+            userEmail: user?.email,
             destinationId: _id,
             destinationName,
             price,
             imageUrl,
             country,
             departureDate: parsedDate,
-            bookedAt: new Date(),         // ✅ কখন book করলো
+            bookedAt: new Date(),
         };
 
         console.log("Booking Data:", bookingData);
@@ -159,8 +159,8 @@ const TravelDateField = ({ destination }) => {
 
             <Button
                 onClick={handleBooking}
-                isLoading={loading}          // ✅ loading state
-                isDisabled={loading}         // ✅ double submit বন্ধ
+                isLoading={loading}
+                isDisabled={loading}
                 className="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-md mt-3"
                 endContent={!loading && <span>→</span>}
             >

@@ -14,11 +14,10 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  // trustedOrigins: [
-  //     "http://localhost:3000",
-  //     process.env.FRONTEND_URL,
-  // ].filter(Boolean),
-
+  trustedOrigins: [
+    "http://localhost:3000",
+    process.env.FRONTEND_URL,
+  ].filter(Boolean),
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
